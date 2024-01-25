@@ -36,4 +36,29 @@ public class Animal : MonoBehaviour
         yield return new WaitForSeconds(_timeUntilFinalAction);
         FinalAction();
     }
+    private void OnMouseDown()
+    {
+        bool canShoot = LicenseOnAnimals.Instance.IsShootingAllowed(Type);
+        if (Weapon.Instance.IsReloading)
+        {
+            return;
+        }
+        if (!canShoot)
+        {
+            return;
+        }
+
+        if (Weapon.Instance.Shoot())
+        {
+            Debug.Log("Shooted " + Weapon.Instance.CurrentAmmo);
+
+            CoinSystem.instance.AddCoin();
+            Debug.Log(Type.ToString() + " Shot");
+            RunAway();
+        }
+        else
+        {
+            Debug.Log("Not enough ammo");
+        }
+    }   
 }

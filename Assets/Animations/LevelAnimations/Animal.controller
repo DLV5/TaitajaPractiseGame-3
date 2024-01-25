@@ -36,7 +36,7 @@ AnimatorController:
   m_Name: Animal
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: AttackedSuccessfuly
+  - m_Name: AttackedSuccessfully
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -64,7 +64,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: AttackedSuccessfuly
+    m_ConditionEvent: AttackedSuccessfully
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4669983462393934324}

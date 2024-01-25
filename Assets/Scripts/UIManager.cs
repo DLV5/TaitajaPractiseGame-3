@@ -9,9 +9,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _timerText;
     private void Awake()
     {
+        CountdownTimer.OnPlayingTimeEnded += ShowWinScreen;
+        LicenseOnAnimals.Instance.OnProhibitedAnimalShot += ShowDeadScreen;
+
+        Time.timeScale = 1.0f;   //Unpause game at the start
+
         _winScreen.SetActive(false);
         _deadScreen.SetActive(false);
-        CountdownTimer.OnPlayingTimeEnded += ShowWinScreen;
     }
     private void ShowWinScreen()
     {
@@ -23,4 +27,5 @@ public class UIManager : MonoBehaviour
         _deadScreen.SetActive(true);
         _timerText.SetActive(false);
     }
+
 }

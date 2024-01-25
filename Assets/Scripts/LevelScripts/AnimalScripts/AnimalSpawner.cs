@@ -21,14 +21,16 @@ public class AnimalSpawner : MonoBehaviour
         InvokeRepeating("SpawnAnimal", 2f, Random.Range(_delayMinBetweenSpawn, _delayMaxBetweenSpawn));
     }
 
-    private void OnRightAnimalEscaped()
-    {
-        _animalOnRightPosition = null;
-    }
-
     private void OnLefttAnimalEscaped()
     {
+        _animalOnLeftPosition.OnAnimalEscaped -= OnLefttAnimalEscaped;
         _animalOnLeftPosition = null;
+    }
+
+    private void OnRightAnimalEscaped()
+    {
+        _animalOnRightPosition.OnAnimalEscaped -= OnRightAnimalEscaped;
+        _animalOnRightPosition = null;
     }
 
     /// <summary>
