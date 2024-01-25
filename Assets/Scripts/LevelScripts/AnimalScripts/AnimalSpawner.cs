@@ -13,11 +13,12 @@ public class AnimalSpawner : MonoBehaviour
     private Animal _animalOnLeftPosition;
     private Animal _animalOnRightPosition;
 
-    [SerializeField] private float _delayBetweenSpawn = 5f;
+    [SerializeField] private float _delayMinBetweenSpawn = 3f;
+    [SerializeField] private float _delayMaxBetweenSpawn = 5f;
 
     private void Start()
     {
-        InvokeRepeating("SpawnAnimal", 2f, _delayBetweenSpawn);
+        InvokeRepeating("SpawnAnimal", 2f, Random.Range(_delayMinBetweenSpawn, _delayMaxBetweenSpawn));
     }
 
     private void OnRightAnimalEscaped()
@@ -55,7 +56,6 @@ public class AnimalSpawner : MonoBehaviour
 
     private void SetAnimal(Animal animalToSet, Vector3 positionToSpawn)
     {
-        Debug.Log(animalToSet + " animalSpawned");
         animalToSet.gameObject.transform.position = positionToSpawn;
         animalToSet.gameObject.SetActive(true);
         StartCoroutine(animalToSet.WaitUntilFinalAction());

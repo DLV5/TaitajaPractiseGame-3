@@ -4,6 +4,13 @@ using UnityEngine;
 /// </summary>
 public class PredatorAnimal : Animal
 {
+    private Animator _animator;
+
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     public override void FinalAction()
     {
         Attack();
@@ -11,7 +18,14 @@ public class PredatorAnimal : Animal
 
     private void Attack()
     {
-        Debug.Log("Tried to attack");
-        RunAway();
+        if(!PlayerHidingController.IsPlayerHiding)
+        {
+            _animator.SetTrigger("AttackedSuccessfully");
+            //Show lose screen
+        } else
+        {
+            Debug.Log(!PlayerHidingController.IsPlayerHiding + "Attack failed");
+            RunAway();
+        }
     }
 }
